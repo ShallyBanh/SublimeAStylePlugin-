@@ -3,7 +3,9 @@
 What is Astyle? Well Astyle stands for Artistic Style and is a source code indenter/formatter. In this plugin, the Astyle will be designed specifically for c/c++. 
 
 # Inspiration
-Why do this? Well it's extremely annoying when i try to format my code and I thought hey wouldn't it be nice if i just save my code and it automatically formatted itself so that's where the inspiration comes from. Also, because i'm hella lazy and i hate going through my code formatting it properly.
+Why do this? Well it's extremely annoying when i try to format my code and I thought hey wouldn't it be nice if i just save my code and it automatically formatted itself so that's where the inspiration comes from. Also, because i'm hella lazy and i hate going through my code formatting it properly. 
+
+Oh and another inspiration is that i have this really annoying friend who keeps starring my repos and pestering me to do things. So i figured i should do some stuff so maybe he'll leave me alone and stop starring my repos.
 
 # Implementation
 NOT COMPLETE YET. Currently all this does is fix the indentation of your code but there are some edge cases that will break it so i don't suggest using it until it's complete.
