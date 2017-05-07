@@ -1,35 +1,68 @@
 import sublime, sublime_plugin  
-  
-class TestPlugin(sublime_plugin.EventListener):  
 
-    def on_post_save(self, view):  
-        bracketCount = 0 
-        new_file = ""
-        with open(view.file_name(), "r") as fp:
+class StyleCode():
+    def __init__(self):
+        self.brackets = 0
+        self.new_file = ""
+        self.line = ""
+
+    def ParseLine(self, line):
+        self.line = line
+
+    def StyleSpaces(self):
+        #Spaces for brackets ( )
+        begin = self.line.find('(')
+        if( begin!= -1 and self.line[begin +1: begin +2 ] != ' '):
+            self.line = self.line[:begin+1] + " " + self.line[begin+1:]
+
+        end = self.line.find(')')
+        if(end != -1 and self.line[end -1 : end ] != ' '):
+            self.line = self.line[:end] + " " + self.line[end:]
+
+        #Spaces for equal
+        equal = self.line.find('=')
+        if(equal != -1 and self.line[equal +1 : equal +2] != ' '):
+            self.line = self.line[:equal+1] + " " + self.line[equal+1:]
+
+        lequal = self.line.find('=')
+        if(lequal != -1 and self.line[lequal - 1: lequal]!= ' '):
+            self.line = self.line[:lequal] + " " + self.line[lequal:]
+
+    def StyleBrackets(self):
+        offset = 0
+        ifbrackets = self.line.find('{')
+        endbracket = self.line.find('}')
+
+        if ifbrackets != -1:
+            self.brackets += 1
+            offset -= 1
+
+        if endbracket != -1:
+            self.brackets -= 1
+
+        if self.brackets != 0:
+            spaces = self.brackets + offset
+            new_line = "\t" * spaces
+            new_line += self.line.lstrip()
+            self.new_file += new_line
+            return
+
+        self.new_file += self.line
+
+    def MakeItBetter(self, filename):
+        with open(filename, "r") as fp:
             for line in fp:
-            	offset = 0
-            	beginBracket = line.find('{')
-            	endBracket = line.find('}')
+                self.ParseLine(line)
+                self.StyleSpaces( )
+                self.StyleBrackets( )             
 
-                #found a bracket up the count
-            	if beginBracket != -1:
-            		bracketCount += 1
-                    #the offset ensures the bracket doesn't get indented at the next indentation level 
-            		offset -= 1
-                #found a closing bracket decrease the count
-            	elif endBracket != -1:
-                    bracketCount -= 1
-                #we are in a bracket so add the proper indention to beginning of each line 
-            	if bracketCount != 0:
-                	numOfTabs = bracketCount + offset
-                	new_line = "\t" * numOfTabs
-                	new_line += line.lstrip()
-                	new_file += new_line
-                	continue
-            	new_file += line.lstrip()       
-
-        #Modify the file with the desired indentation 
-        file = open(view.file_name(), "w")
+        file = open(filename, "w")
         file.seek(0)
-        file.write(new_file)
+        file.write(self.new_file)
+
+class EventDump(sublime_plugin.EventListener):  
+
+    def on_post_save(self, view): 
+        style = StyleCode()
+        style.MakeItBetter(view.file_name())
         
