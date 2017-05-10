@@ -8,7 +8,7 @@ Why do this? Well it's extremely annoying when i try to format my code and I tho
 Oh and another inspiration is that i have this really annoying friend who keeps starring my repos and pestering me to do things. So i figured i should do some stuff so maybe he'll leave me alone and stop starring my repos.
 
 # Implementation
-NOT COMPLETE YET. Currently all this does is fix the indentation of your code but there are some edge cases that will break it so i don't suggest using it until it's complete.
+NOT COMPLETE YET. Currently all this does is fix the indentation and spacing of your code but there are some edge cases that will break it so i don't suggest using it until it's complete.
 
 # Example Usage
 Before
@@ -24,12 +24,12 @@ int j =1;
 ```
 After 
 ```c++
-int main()
+int main( )
 {
-  int i =1;
-  if (1)
+  int i = 1;
+  if ( 1 )
   {
-    int j =1;
+    int j = 1;
   }
 }
 ```
@@ -40,7 +40,7 @@ A WHOLE LOT
 - Test edge cases for indentation ^ (make sure that the fix actually works)
 - Indentation for classes. Currently if you have classes in your file this won't work
 - Test edge cases check for that ^
-- Spacing for expressions, brackets, etc (ex. int i=1; -> int i = 1;)
+- Spacing for expressions, brackets, etc (ex. int i=1; -> int i = 1;) -> done 
 - Test edge cases for spacings ^
 - Astyle options file where the user can specify the indentation level, spacing level, default brace level, etc they prefer
 - Definitely forgetting something 
