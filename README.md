@@ -16,7 +16,7 @@ Before
 int main()
 {
 int i =1;
-if (1)
+if (1==2)
 {
 int j =1;
 }
@@ -27,7 +27,7 @@ After
 int main( )
 {
   int i = 1;
-  if ( 1 )
+  if ( 1 == 2 )
   {
     int j = 1;
   }
@@ -36,12 +36,13 @@ int main( )
 
 # TODO
 A WHOLE LOT 
-- Add fix to indentation to handle edge cases
+- <strike> Add fix to indentation to handle edge cases </strike>
 - Test edge cases for indentation ^ (make sure that the fix actually works)
 - Indentation for classes. Currently if you have classes in your file this won't work
 - Test edge cases check for that ^
-- Spacing for expressions, brackets, etc (ex. int i=1; -> int i = 1;) -> done 
+- <strike> Spacing for expressions, brackets, etc (ex. int i=1; -> int i = 1;) -> done </strike>
 - Test edge cases for spacings ^
 - Astyle options file where the user can specify the indentation level, spacing level, default brace level, etc they prefer
+- Write test cases that i can run pre-commit to see if it'll break anything 
 - Definitely forgetting something 
 
